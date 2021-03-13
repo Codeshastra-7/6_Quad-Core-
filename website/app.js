@@ -65,12 +65,12 @@ app.get('/login',(req,res) =>{
     res.render("index");
 })
 
-app.post('/regiter',(req,res) =>{
+app.post('/register',(req,res) =>{
     let firstName = req.body.first_name;
     let lastName = req.body.last_name;
     let email = req.body.email;
     let password = req.body.password;
-    db.run("INSERT INTO loginDetails(first name,last name,email,password) VALUES (?,?,?,?)",
+    db.run("INSERT INTO LOGIN(first_name,second_name,email,password) VALUES (?,?,?,?)",
     [firstName, lastName, email, password],
     (err) => {
       if (err) {
@@ -84,15 +84,22 @@ app.post('/regiter',(req,res) =>{
 app.post('/login',(req,res) =>{
     let email = req.body.email;
     let password = req.body.password;
-    db.run("INSERT INTO loginDetails(first name,last name,email,password) VALUES (?,?,?,?)",
-    [firstName, lastName, email, password],
-    (err) => {
-      if (err) {
-        return console.log(err.message);
-      }
-    }
-  );
-  res.redirect('/login');
+    sql = 'SELECT password from LOGIN where email=?'
+    db.get(sql, [email],(err,row)=>{
+        console.log('====================================');
+        console.log(row);
+        console.log('====================================');
+        if(err) {
+            console.log('====================================');
+            console.log(err);
+            console.log('====================================');
+        }
+        if(row.password==password) {
+            res.redirect('/');
+        }else{
+            res.redirect('/error');
+        }
+    })
 })
 
 app.get("/getData", (req, res) => {
