@@ -8,23 +8,23 @@
     <title>Document</title>
 </head>
 <body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
     <!-- Thumbs -->
-    
+    We found <p id="numberOfResults"><%= data.length %></p> results!
     <ul class="posts-box">
         <% data.forEach(function(item){ %>
             <li>
                 <div class="card">
-                    <a class="button" href="#" >
-                        <img src="<%=item.item_image %>" />
+                        <img id="<%=item.item_id%>_image" src="<%=item.item_image %>" />
                         
-                    </a>
                     <div>
-                        <h3><%=item.item_name %></h3>
-                        <p><%= item.item_description %></p>
+                        <h3 id="<%=item.item_id%>_name"><%=item.item_name %></h3>
+                        <p> description hidden for authenticated users</p>
+                        <!-- <p id="<%=item.item_id%>_description"><%= item.item_description %></p> -->
                     </div>
                     <div>
-                        <a class="button" href="#"> Learn More</a>
+                        <a class="button" onClick="triggerModel(this.id)" id="<%=item.item_id%>"> Click here if you have lost this item</a>
                     </div>
             </div>
         </li>
@@ -33,72 +33,24 @@
     </ul>
   
     <!-- Modal -->
-    <div class="modal" id="modal-name">
-      <div class="modal-sandbox"></div>
-      <div class="modal-box">
-        <div class="modal-header">
-          <img src="" class="inner-img" alt="">
-        </div>
-        <div class="modal-body">
-          <h2 class="inner-title"></h2>
-          <div class="inner-text"></div>
-        </div>
-      </div>
-    </div>
     <script>
-       var thisElement = 0;
-
-function innerContent(content){
-  $(".inner-img").attr("src",post[content].postImg);
-  $(".inner-title").html(post[content].postTitle);
-  $(".inner-text").html(post[content].postContent);
-};
-
-//Open post:
-$(".button").click(function(e){
-  e.preventDefault();
-  thisElement = $(this).attr("data-obj");
-  innerContent(thisElement);
-  $(".modal").css({"display":"block"});
-  dissBtn();
-});
-
-//Close post:
-$(".close-post, .modal-sandbox").click(function(){
-  $(".modal").css({"display":"none"});
-});
-
-//Next post:
-$(".next-post").click(function(e){
-  e.preventDefault();
-  if (thisElement<postLength-1) {
-    thisElement = parseInt(thisElement) + 1;
-    innerContent(thisElement);
-    dissBtn();
-  };
-});
-
-//Prev post:
-$(".prev-post").click(function(e){
-  e.preventDefault();
-  if (thisElement>0) {
-    thisElement = parseInt(thisElement) - 1;
-    innerContent(thisElement);
-    dissBtn();
-  };
-});
-
-//Button disable:
-function dissBtn(){
-  $(".prev-post, .next-post").removeClass("disabled");
-  if (thisElement<=0){
-    $(".prev-post").addClass("disabled");
-  }
-  else if (thisElement>=postLength-1){
-    $(".next-post").addClass("disabled");
-  };
-};
+    function triggerModel(id){
+      alert(id);
+            var description = prompt("Please Describe The item you lost","");
+            
+            if(description=="" || description==null){
+              
+            }
+            else{
+              window.location.href = "/descriptionValu?query="+description +"&id="+id;
+            }
+            //  var query = document.getElementById("input").value;
+            
+            // console.log(query);
+            // window.location.href = "/searchData?query="+query;
+    }       
       </script>
+
   </body>
   
   

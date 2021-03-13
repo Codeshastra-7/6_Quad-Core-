@@ -8,6 +8,7 @@ const helpers = require("./scripts/helper");
 var synonyms = require("synonyms");
 const { cheapness } = require("synonyms/dictionary");
 const sqlite3 = require("sqlite3").verbose();
+var stringSimilarity = require("string-similarity");
 
 var fileNameImage = null;
 app.use(
@@ -209,6 +210,25 @@ app.get("/gala",(req,res) => {
     let localJSON = itemJSON;
     itemJSON=[];
     res.render('searchResult',data=localJSON);
+})
+
+app.get("/descriptionValu",(req,res) => {
+  var description = req.query.query;
+  var id=req.query.id;
+  console.log(id);
+  sql = "SELECT item_description from ITEMS where item_id=?";
+  db.get(sql, [id], (err, row) => {
+    console.log("====================================");
+    console.log(row);
+    console.log("====================================");
+    if (err) {
+      console.log("====================================");
+      console.log(err);
+      console.log("====================================");
+    }
+    
+  });
+
 })
 
 app.listen(3000, () => {
