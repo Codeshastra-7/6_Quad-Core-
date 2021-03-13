@@ -214,6 +214,9 @@ const displacementSlider = function (opts) {
   animate();
 };
 
+
+
+
 imagesLoaded(document.querySelectorAll('img'), () => {
 
   document.body.classList.remove('loading');

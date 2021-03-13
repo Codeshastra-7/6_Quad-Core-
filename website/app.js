@@ -5,7 +5,7 @@ const multer = require("multer");
 const bodyParser = require("body-parser");
 const path = require("path");
 const helpers = require("./scripts/helper");
-
+var synonyms = require("synonyms");
 const sqlite3 = require("sqlite3").verbose();
 
 
@@ -87,6 +87,12 @@ app.post('/register',(req,res) =>{
 app.get('/error', (req, res) => {
     res.render('error');
 })
+
+
+app.get('/search', (req, res) => {
+    res.render('search');
+})
+
 app.post('/login',(req,res) =>{
     console.log('====================================');
     console.log(req);
@@ -147,6 +153,23 @@ app.post("/enter_new_item",upload.single('myFile'), (req, res) => {
   );
   res.redirect("/");
 });
+
+
+app.get("/searchData", (req, res) => {
+    let searchQuery=synonyms(req.query.query,"n");
+    console.log('====================================');
+    console.log(searchQuery);
+    searchQuery.forEach((item)=>{
+        db.all("SELECT item_id,item_name,item_image from ITEMS Where item_name like ? ",['%'+item+'%'],(err,row)=>{
+            if(err) console.log(err);
+            console.log(row);
+            })
+
+    })
+
+    console.log('====================================');
+    // var searchQuery = req.body.searchItem;
+})
 
 app.listen(3000, () => {
   console.log("====================================");

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="search.css">
+    <title>Document</title>
+</head>
+<body>
+   
+    <div class="wrap">
+        <div class="search">
+           
+
+                <input id="input" type="text" class="searchTerm" placeholder="What are you looking for?">
+                <!-- <button type="submit" class="searchButton">
+                    <i class="fa fa-search">Lost</i>
+                </button> -->
+                <button type="submit" class="searchButton2" onClick="search()">
+                    <i class="fa fa-search">Find</i>
+                </button>
+            
+        </div>
+     </div>
+     <script type="text/javascript">
+        function search(){
+            var query = document.getElementById("input").value;
+            
+            console.log(query);
+            window.location.href = "/searchData?query="+query;
+        }
+    </script>
+</body>
+</html>
