@@ -71,7 +71,7 @@
 							</div>
 						 <!-- </div> -->
 					</div></span>
-					<span data-slide-status="1">If you find an object, help the owner find the object <button data-slide="3">head here!</button></span>
+					<span data-slide-status="1">If you find an object, help the owner find the object <button onclick="virtualClick()">head here!</button></span>
 					<span data-slide-status="2">Even after your earnest effort, what if you do not find an owner?</tr>Don't worry we got you covered. <br>Head on to our donation policy for more details</tr></span>
 					<span data-slide-status="3"><div class="container">
 						
@@ -100,7 +100,7 @@
 				<button class="active" data-slide="0"></button>
 				<button data-slide="1"></button>
 				<button data-slide="2"></button>
-				<button data-slide="3"></button>
+				<button id="falseButton" data-slide="3"></button>
 			</div>
 
 		</div>
@@ -115,6 +115,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-40525870-5"></script>
 <script  src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script>
+	function virtualClick() {
+  document.getElementById("falseButton").click(); // Click on the checkbox
+}
 	 function search(){
             var query = document.getElementById("input").value;
             
