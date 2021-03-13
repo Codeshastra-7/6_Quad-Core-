@@ -218,15 +218,18 @@ app.get("/descriptionValu",(req,res) => {
   console.log(id);
   sql = "SELECT item_description from ITEMS where item_id=?";
   db.get(sql, [id], (err, row) => {
-    console.log("====================================");
-    console.log(row);
-    console.log("====================================");
+    console.log(row.item_description);
     if (err) {
-      console.log("====================================");
       console.log(err);
-      console.log("====================================");
     }
-    
+    var x=stringSimilarity.compareTwoStrings(row.item_description, description);
+    console.log(x);
+    if(x>0.7){
+      res.redirect('/itemsPage');
+    }else{
+      res.redirect('/error');
+    }
+
   });
 
 })
