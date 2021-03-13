@@ -1,33 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>CodePen - WebGL Distortion Slider</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="./style.css">
+
 </head>
 <body>
-    Hello world!<br>
-    <p>
+<!-- partial:index.partial.html -->
+<body class="loading">
 
-        <Button href="/getData">Click to display text!</Button>
-        <Table>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Valid</th>
-                <th>Image</th>
-            </tr>
-            <% data.forEach(function(thing){ %>>
-                <tr>
-                    <td><%= thing.id %></td>
-                    <td><%= thing.name %></td>
-                    <td><%= thing.valid %></td>
-                    <td><img src="<%= thing.image %>"></td>
-                </tr>
-            <% }) %>
+	<!-- add karla font -->
 
-        </Table>
-    </p>
+	<header>
+		<div class="inner">
+			<div class="logo"><img src="./images/lostnfound.png"></div>
+			<div class="burger"></div>
+			<nav>
+				<a class="active" href="#">Report Oject</a>
+				<!-- <a href="#">About Us</a> -->
+				<a href="#">Find Object</a>
+				<!-- <a href="#">Get Involved</a> -->
+			</nav>
+			<a href="#" class="donate-link">Donation Policy</a>
+		</div>
+	</header>
+
+	<main>
+		<div id="slider">
+
+			<div class="slider-inner">
+				<div id="slider-content">
+					<div class="meta">Lost and Found</div>
+					<h2 id="slide-title">Lost <br>Treasure?</h2>
+					<span data-slide-title="0">Finding <br>Treasure</span>
+					<span data-slide-title="1">Report<br>Treasure</span>
+					<span data-slide-title="2">No <br>Owner?</span>
+					<span data-slide-title="3">Donate <br>Treasure</span>
+					<div class="meta">Status</div>
+					<div id="slide-status">Find your lost treasure by simply searching your possession and answering basic questions about it!</div>
+					<span data-slide-status="0">Head on to Find Object</span>
+					<span data-slide-status="1">If you find an object, help the owner find the object</span>
+					<span data-slide-status="2">Even after your earnest effort, what if you do not find an owner?</tr>Don't worry we got you covered. <br>Head on to our donation policy for more details</tr></span>
+					<span data-slide-status="3">With a no owner situation, the best way to utilize the lost object is to donate it to someone in need </span>
+				</div>
+			</div>
+
+			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123024/leopard2.jpg" />
+			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123024/lion2.jpg" />
+			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123024/tiger2.jpg" />
+			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123024/bear2.jpg" />
+
+			<div id="pagination">
+				<button class="active" data-slide="0"></button>
+				<button data-slide="1"></button>
+				<button data-slide="2"></button>
+				<button data-slide="3"></button>
+			</div>
+
+		</div>
+	</main>
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-40525870-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-40525870-5');
+</script>
+
+	</body>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js'></script><script  src="./script.js"></script>
+
 </body>
 </html>

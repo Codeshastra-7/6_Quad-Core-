@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Hello world!<br>
+    <p>
+
+        <Button href="/getData">Click to display text!</Button>
+        <Table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Valid</th>
+                <th>Image</th>
+            </tr>
+            <% data.forEach(function(thing){ %>>
+                <tr>
+                    <td><%= thing.id %></td>
+                    <td><%= thing.name %></td>
+                    <td><%= thing.valid %></td>
+                    <td><img src="<%= thing.image %>"></td>
+                </tr>
+            <% }) %>
+
+        </Table>
+    </p>
+</body>
+</html>

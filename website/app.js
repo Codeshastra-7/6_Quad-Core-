@@ -84,6 +84,9 @@ app.post('/register',(req,res) =>{
   res.redirect('/login');
 })
 
+app.get('/error', (req, res) => {
+    res.render('error');
+})
 app.post('/login',(req,res) =>{
     console.log('====================================');
     console.log(req);
