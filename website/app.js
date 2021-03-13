@@ -28,40 +28,9 @@ let db = new sqlite3.Database("../database/test.db", (err) => {
   console.log("====================================");
 });
 
-// db.serialize(() => {
-//   db.each(
-//     `SELECT item_id as id,item_name as name,item_description as description FROM ITEMS`,
-//     (err, row) => {
-//       if (err) {
-//         console.error(err.message);
-//       }
-//       console.log(row.id + "\t\t" + row.name + "\t\t" + row.description);
-//     }
-//   );
-// });
-
-// db.serialize(() => {
-//   db.each(
-//     `SELECT user_id as id,user_name as name,valid_user as valid FROM USERS`,
-//     (err, row) => {
-//       if (err) {
-//         console.error(err.message);
-//       }
-//       console.log(row.id + "\t\t" + row.name + "\t\t" + row.valid);
-//     }
-//   );
-// });
-
-// db.close((err) => {
-//   if (err) {
-//     return console.error(err.message);
-//   }
-//   console.log("Close the database connection.");
-// });
-
 app.get('/', (req, res) => {
     var data=null;
-    var sql = "select item_id as id,item_id as id,item_id as item_de from ITEMS"
+    var sql = "SELECT item_id as id,item_name as name,item_description as valid from ITEMS"
     var params=[]
     db.all(sql,params,(err,rows) => {
         if(err){
@@ -73,12 +42,11 @@ app.get('/', (req, res) => {
             rows
         });
     })
-    res.render('homepage',{data:{}});
 })
 
 app.get('/getData', (req, res) => {
     var data=null;
-    var sql = "select * from USERS"
+    var sql = "SELECT user_id as id,user_name as name,valid_user as valid from USERS"
     var params=[]
     db.all(sql,params,(err,rows) => {
         if(err){
@@ -96,6 +64,24 @@ app.get('/getData', (req, res) => {
     })
     // console.log(data);
     // res.render('homepage',{data:data.data});
+})
+
+app.get('/enterData',(req, res) => {
+    res.render('newItemEntry');
+})
+
+app.post('/enter_new_item',(req, res) => {
+    var item_id = new Date().getTime();
+    var name = req.body.Item_Name;
+    var description = req.body.Item_Description;
+
+    db.run('INSERT INTO ITEMS(item_id,item_name,item_description) VALUES (?,?,?)',[item_id,name,description],(err)=>{
+        if(err){
+            return console.log(err.message);
+        }
+        res.redirect('/')
+    
+    });
 })
 
 app.listen(3000,()=>{
