@@ -7,14 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    <Form action="enter_new_item/" method="post">
+    <Form action="enter_new_item/" method="post" enctype="multipart/form-data">
     <label for="Item_Name">Item name:</label><br>
   <input type="text" id="Item_Name" name="Item_Name"><br>
   <label for="Item_Description">Item_Description:</label><br>
   <input type="text" id="Item_Description" name="Item_Description"><br>
   <!-- <label for="lname">Last name:</label><br>
   <input type="text" id="lname" name="lname"><br> -->
-  <input type="submit" value="OK">
+  <label>Image Upload</label>
+  <input type="file" name="myFile" />
+  <input type="submit" value="OK" />
     </Form>
 </body>
 </html>
