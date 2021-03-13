@@ -7,7 +7,7 @@ $('.upload-photo').on('click', function() {
     $(this).siblings('#id_photo').trigger('click');
 });
 
-inputphoto.on('change', function(){
+inputphoto.on('click', function(){
     var input = $(this),
         reader = new FileReader();
 
