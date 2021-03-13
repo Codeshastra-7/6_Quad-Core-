@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const ejs = require("ejs");
-// const json = require("json");
+const multer = require("multer");
 const bodyParser = require("body-parser");
 
 
@@ -28,6 +28,20 @@ let db = new sqlite3.Database("../database/db.db", (err) => {
   console.log("====================================");
 });
 
+
+var Storage = multer.diskStorage({
+    destination:(req,file,callback)=>{
+        callback(null,"./Images");
+    },
+    filename:(req,file,callback)=>{
+        callback(null,file.fieldname+"_"+Date.now()+"_"+file.originalname);
+    }
+})
+
+var upload = multer({
+    storage:Storage
+}).array("imgUploader",3);
+
 app.get('/', (req, res) => {
     var data=null;
     var sql = "SELECT item_id as id,item_name as name,item_description as valid,item_image as image from ITEMS"
@@ -38,11 +52,14 @@ app.get('/', (req, res) => {
             return;
         }
         console.log(rows);
+        
         res.render('homepage',{data:
             rows
         });
     })
 })
+
+
 
 app.get('/getData', (req, res) => {
     var data=null;
@@ -75,6 +92,14 @@ app.post('/enter_new_item',(req, res) => {
     var name = req.body.Item_Name;
     var description = req.body.Item_Description;
 
+    upload(req, res,(err) =>{
+        if(err){
+            return res.end("Something went end");
+        }
+        return res.end()
+    }
+    )
+
     db.run('INSERT INTO ITEMS(item_id,item_name,item_description) VALUES (?,?,?)',[item_id,name,description],(err)=>{
         if(err){
             return console.log(err.message);
@@ -82,6 +107,8 @@ app.post('/enter_new_item',(req, res) => {
         res.redirect('/')
     
     });
+
+    
 })
 
 app.listen(3000,()=>{

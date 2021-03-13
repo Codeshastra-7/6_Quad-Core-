@@ -16,12 +16,14 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Valid</th>
+                <th>Image</th>
             </tr>
             <% data.forEach(function(thing){ %>>
                 <tr>
                     <td><%= thing.id %></td>
                     <td><%= thing.name %></td>
                     <td><%= thing.valid %></td>
+                    <td><%= thing.image %></td>
                 </tr>
             <% }) %>
 
