@@ -18,6 +18,7 @@ app.use(
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/uploads"));
+app.use(express.static(__dirname + "/public"));
 
 
 app.set("view engine", "ejs");
@@ -59,6 +60,41 @@ app.get("/", (req, res) => {
   });
 });
 
+
+app.get('/login',(req,res) =>{
+    res.render("index");
+})
+
+app.post('/regiter',(req,res) =>{
+    let firstName = req.body.first_name;
+    let lastName = req.body.last_name;
+    let email = req.body.email;
+    let password = req.body.password;
+    db.run("INSERT INTO loginDetails(first name,last name,email,password) VALUES (?,?,?,?)",
+    [firstName, lastName, email, password],
+    (err) => {
+      if (err) {
+        return console.log(err.message);
+      }
+    }
+  );
+  res.redirect('/login');
+})
+
+app.post('/login',(req,res) =>{
+    let email = req.body.email;
+    let password = req.body.password;
+    db.run("INSERT INTO loginDetails(first name,last name,email,password) VALUES (?,?,?,?)",
+    [firstName, lastName, email, password],
+    (err) => {
+      if (err) {
+        return console.log(err.message);
+      }
+    }
+  );
+  res.redirect('/login');
+})
+
 app.get("/getData", (req, res) => {
   var data = null;
   var sql =
@@ -84,9 +120,6 @@ app.post("/enter_new_item",upload.single('myFile'), (req, res) => {
   var description = req.body.Item_Description;
   var imageData = fileNameImage;
   
-//   console.log('====================================');
-//   console.log(req.file);
-//   console.log('====================================');
   db.run(
     "INSERT INTO ITEMS(item_id,item_name,item_description,item_image,user_id) VALUES (?,?,?,?,?)",
     [item_id, name, description, imageData, 1],
