@@ -154,7 +154,7 @@ app.post("/enter_new_item", upload.single("myFile"), (req, res) => {
 var itemJSON = [];
 app.get("/searchData", async (req, res) => {
   let searchQuery = synonyms(req.query.query, "n");
-  
+  itemJSON=[];
   console.log("====================================");
   // console.log(searchQuery);
   var count=0;
@@ -196,8 +196,10 @@ app.get("/searchData", async (req, res) => {
 
 
 app.get("/gala",(req,res) => {
-    res.json( itemJSON );
-    res.render('sea')
+    // res.json( itemJSON );
+    let localJSOn = itemJSON;
+    itemJSON=[];
+    res.render('searchResult',data=localJSOn);
 })
 
 app.listen(3000, () => {
