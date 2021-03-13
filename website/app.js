@@ -153,10 +153,15 @@ app.post("/enter_new_item", upload.single("myFile"), (req, res) => {
 });
 var itemJSON = [];
 app.get("/searchData", async (req, res) => {
-  let searchQuery = synonyms(req.query.query, "n");
+   var searchQuery = [];
+   searchQuery.push(req.query.query)
+  let searchList = synonyms(req.query.query, "n");
+  if(searchList !== undefined){
+        searchQuery = [...searchList];
+  }
   itemJSON=[];
   console.log("====================================");
-  // console.log(searchQuery);
+  console.log(searchQuery);
   var count=0;
   console.log(searchQuery.length)
   const promise1 = new Promise((resolve, reject) => {
@@ -187,7 +192,7 @@ app.get("/searchData", async (req, res) => {
     let itemLength = itemJSON.length;
     console.log(itemJSON);
     console.log(itemLength);
-    res.redirect('/gala?'+itemJSON);
+    res.redirect('/gala?');
     console.log("====================================");
   
   })
@@ -197,9 +202,9 @@ app.get("/searchData", async (req, res) => {
 
 app.get("/gala",(req,res) => {
     // res.json( itemJSON );
-    let localJSOn = itemJSON;
+    let localJSON = itemJSON;
     itemJSON=[];
-    res.render('searchResult',data=localJSOn);
+    res.render('searchResult',data=localJSON);
 })
 
 app.listen(3000, () => {
