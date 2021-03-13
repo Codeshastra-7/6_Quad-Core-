@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs')
 
 
-let db = new sqlite3.Database("../database/test.db", (err) => {
+let db = new sqlite3.Database("../database/db.db", (err) => {
   if (err) {
     return console.error(err.message);
   }
@@ -30,7 +30,7 @@ let db = new sqlite3.Database("../database/test.db", (err) => {
 
 app.get('/', (req, res) => {
     var data=null;
-    var sql = "SELECT item_id as id,item_name as name,item_description as valid from ITEMS"
+    var sql = "SELECT item_id as id,item_name as name,item_description as valid,item_image as image from ITEMS"
     var params=[]
     db.all(sql,params,(err,rows) => {
         if(err){
