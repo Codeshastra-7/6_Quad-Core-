@@ -167,18 +167,22 @@ app.get("/searchData", async (req, res) => {
   const promise1 = new Promise((resolve, reject) => {
     searchQuery.forEach( (item) => {
       db.all(
-        "SELECT item_id,item_name,item_image from ITEMS Where item_name like ? ",
+        "SELECT item_id,item_name,item_image,item_description from ITEMS Where item_name like ? ",
         ["%" + item + "%"],
         (err, row) => {
           if (err) console.log(err);
-          if (row[0] != null) {
-            itemJSON.push(row[0]);
-            console.log(row[0]);
-          }
+          row.forEach((r) => {
+            itemJSON.push(r);
+            count++;
+          });
+        //   if (row[0] != null) {
+        //     itemJSON.push(row[0]);
+        //     console.log(row[0]);
+        //   }
 
           count++;
           console.log(count);
-          if(count>=searchQuery.length)
+          if(count>=searchQuery.length+row.length)
             resolve("Sucess!");
           // console.log(row);
         }

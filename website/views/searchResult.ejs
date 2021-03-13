@@ -12,7 +12,21 @@
     <!-- Thumbs -->
     <ul class="posts-box">
         <% data.forEach(function(item){ %>
-            <li>Hello</li>
+            <li>
+                <div class="card">
+                    <a class="button" href="#" >
+                        <img src="<%=item.item_image %>" />
+                        
+                    </a>
+                    <div>
+                        <h3><%=item.item_name %></h3>
+                        <p><%= item.item_description %></p>
+                    </div>
+                    <div>
+                        <a class="button" href="#"> Learn More</a>
+                    </div>
+            </div>
+        </li>
             <% }) %>
       <!-- JSON Here!
     </ul>
