@@ -12,7 +12,7 @@ const sqlite3 = require("sqlite3").verbose();
 var fileNameImage=null;
 app.use(
   bodyParser.urlencoded({
-    extended: true,
+    extended: false,
   })
 );
 
@@ -61,8 +61,11 @@ app.get("/", (req, res) => {
 });
 
 
-app.get('/login',(req,res) =>{
+app.get('/register',(req,res) =>{
     res.render("index");
+})
+app.get('/login',(req,res) =>{
+    res.render("login");
 })
 
 app.post('/register',(req,res) =>{
@@ -82,8 +85,11 @@ app.post('/register',(req,res) =>{
 })
 
 app.post('/login',(req,res) =>{
-    let email = req.body.email;
-    let password = req.body.password;
+    console.log('====================================');
+    console.log(req);
+    console.log('====================================');
+    let password = req.body.passwordlogin;
+    let email = req.body.emaillogin;
     sql = 'SELECT password from LOGIN where email=?'
     db.get(sql, [email],(err,row)=>{
         console.log('====================================');
