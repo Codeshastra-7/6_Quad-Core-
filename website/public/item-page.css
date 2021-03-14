@@ -110,7 +110,7 @@ h3{
 }
 
 h3::before{
-  content: "$";
+  /* content: "$"; */
 }
 
 .sale{
