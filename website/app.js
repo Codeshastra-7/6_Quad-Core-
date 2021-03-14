@@ -233,6 +233,9 @@ app.get("/descriptionValu",(req,res) => {
 
 })
 
+app.get('/donate',(req,res) => {
+  res.render('donate');
+})
 
 app.get('/itemsPage',(req,res) => {
   var id = req.query.query;
