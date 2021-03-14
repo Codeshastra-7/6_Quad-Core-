@@ -7,12 +7,24 @@
   
   body {
     font-family: 'Open Sans', sans-serif;
-    background: #092502;
+    background: #aliceblue;
     color: #444444;
   }
 
   
-
+  header {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 115px;
+    z-index: 10;
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/123024/menutexture.png);
+    background-position: center top;
+    background-size: auto 200px;
+    background-repeat: repeat-x;
+  }
   header .inner {
     max-width: 1060px;
     margin: 0 auto;
