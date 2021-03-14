@@ -145,7 +145,7 @@ app.post("/enter_new_item", upload.single("myFile"), (req, res) => {
 
   db.run(
     "INSERT INTO ITEMS(item_id,item_name,item_description,item_image,user_id,item_location,mobile) VALUES (?,?,?,?,?,?,?)",
-    [item_id, name, description, imageData, 1,location,mobile],
+    [item_id, name, description, imageData, 1,location,mobileNo],
     (err) => {
       if (err) {
         return console.log(err.message);
