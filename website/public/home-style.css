@@ -163,7 +163,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 textarea {
-  overflow: auto;
+  overflow: hidden;
   vertical-align: top;
 }
 
@@ -331,7 +331,7 @@ main {
   height: 100%;
   margin: 0 auto;
   z-index: 5;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 #slider-content {
@@ -482,7 +482,7 @@ main {
 .container {
   background-color: rgb(53, 145, 65);
   position: static;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
   width: 75%;
   height: 75%;
