@@ -176,10 +176,6 @@ app.get("/searchData", async (req, res) => {
             itemJSON.push(r);
             count++;
           });
-        //   if (row[0] != null) {
-        //     itemJSON.push(row[0]);
-        //     console.log(row[0]);
-        //   }
 
           count++;
           console.log(count);
@@ -197,7 +193,7 @@ app.get("/searchData", async (req, res) => {
     let itemLength = itemJSON.length;
     console.log(itemJSON);
     console.log(itemLength);
-    res.redirect('/gala?');
+    res.redirect('/gala?query='+req.query.query);
     console.log("====================================");
   
   })
@@ -207,9 +203,10 @@ app.get("/searchData", async (req, res) => {
 
 app.get("/gala",(req,res) => {
     // res.json( itemJSON );
+    console.log(req.query.query);
     let localJSON = itemJSON;
     itemJSON=[];
-    res.render('searchResult',data=localJSON);
+    res.render('searchResult',{data:localJSON,searchQuery:req.query.query});
 })
 
 app.get("/descriptionValu",(req,res) => {
@@ -225,13 +222,26 @@ app.get("/descriptionValu",(req,res) => {
     var x=stringSimilarity.compareTwoStrings(row.item_description, description);
     console.log(x);
     if(x>0.7){
-      res.redirect('/itemsPage');
+      res.redirect('/itemsPage?query='+id);
     }else{
       res.redirect('/error');
     }
 
   });
 
+})
+
+
+app.get('/itemsPage',(req,res) => {
+  var id = req.query.query;
+  sql = "SELECT item_id,item_name,item_image,item_description from ITEMS where item_id=?";
+  db.get(sql,[id],(err, row)=>{
+    if(err){
+      console.log(err);
+      res.redirect('/error')
+    }
+    res.render('itemPage',{id:row.item_id,name:row.item_name,description:row.item_description,image:row.item_image});
+  })
 })
 
 app.listen(3000, () => {

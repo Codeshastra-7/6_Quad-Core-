@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="item-page.css">
+
+    <title><%=name%></title>
+</head>
+<body>
+    <section id="container" class="">
+  
+        <div id="product-img">
+          <img src="https://www.dropbox.com/s/bltmadn0qkdftz9/Nike.svg?raw=1" alt="Nike" title="Nike" class="nike-logo"/>
+          
+          <img style="margin-left: 0px;" src="<%=image%>" alt=<%=name%> title=<%=name%> class="shoe fade-in one"/>
+          
+          <ul id="pagination">
+            <li class="selected">&nbsp</li>
+            <li>&nbsp</li>
+            <li>&nbsp</li>
+            <li>&nbsp</li>
+          </ul>
+        </div>
+        
+        <div id="product-info" class="clearfix-auto">
+          <div id="product-spec" class="wrapper">
+            <h1>Nike Roshe Run</h1>
+            <h2>Mint Green</h2>
+            <h3 class="rrp">150</h3><h3 class="sale">114.99</h3>
+          </div>
+          
+          <div id="ratings">
+            <span class="review-rating">
+                <span class="user-review ninety"></span>
+            </span>
+          </div>
+          
+          <h4 class="clearfix">Description</h4>
+          <p><%=description%></p>
+          
+          <div id="product-options" class="clearfix-auto">
+              <div id="color" class="wrapper">
+                 <h4 class="">Color</h4>
+                 <div>
+                    <input type="radio" name="radio" id="radio1" class="radio" checked/>
+                    <label for="radio1">&nbsp;</label>
+                 </div>
+      
+                  <div>
+                    <input type="radio" name="radio" id="radio2" class="radio"/>
+                    <label for="radio2">&nbsp;</label>
+                  </div>
+      
+                  <div>	
+                    <input type="radio" name="radio" id="radio3" class="radio"/>
+                    <label for="radio3">&nbsp;</label>
+                  </div>
+      
+                  <div>	
+                    <input type="radio" name="radio" id="radio4" class="radio"/>
+                    <label for="radio4">&nbsp;</label>
+                  </div>
+      
+                  <div>	
+                    <input type="radio" name="radio" id="radio5" class="radio"/>
+                    <label for="radio5">&nbsp;</label>
+                  </div>
+              </div>
+      
+              <div id="size" class="wrapper">
+                <h4>Size</h4>
+                <span class="arr"></span>
+                <select>
+                  <option value="size-1">(UK 1)</option>
+                  <option value="size-2">(UK 2)</option>
+                  <option value="size-3">(UK 3)</option>
+                  <option value="size-4">(UK 4)</option>
+                  <option value="size-5">(UK 5)</option>
+                  <option value="size-6">(UK 6)</option>
+                  <option value="size-7">(UK 7)</option>
+                  <option value="size-8">(UK 8)</option>
+                </select>
+                <span class=""></span>
+              </div>
+      
+              <div id="quantity" class="wrapper">
+                 <h4>Qty</h4>
+                 <span class="arr"></span>
+                 <select>
+                  <option value="quantity-1">(1)</option>
+                  <option value="quantity-2">(2)</option>
+                  <option value="quantity-3">(3)</option>
+                  <option value="quantity-4">(4)</option>
+                  <option value="quantity-5">(5)</option>
+                  <option value="quantity-6">(6)</option>
+                  <option value="quantity-7">(7)</option>
+                  <option value="quantity-8">(8)</option>
+                </select>
+              </div>
+          </div>
+          <a href="#" title="Add to cart" class="button clearfix-auto">
+            <img src='https://www.dropbox.com/s/s8c7kezjjdqey6e/shopping%20cart.svg?raw=1' class="shopping-cart"/>
+            Add to cart</a>
+          
+          <a href="#">
+            <img src='https://www.dropbox.com/s/9ojob3v6oae6rp5/sharing-interface.svg?raw=1' class="share" alt="Share this"/>
+          </a>
+        </div>
+      
+      </section>
+</body>
+</html>
